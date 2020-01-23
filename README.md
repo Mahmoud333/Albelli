@@ -1,5 +1,6 @@
 
 The ways web view can communicate with native code:
+
 1- through using library WKWebViewJavascriptBridge 
 
 2- if we were using UIWebView then we would be changing the window.location to a certain identifier and in the swift part inside method shouldStartLoadWithRequest we would return by default true but before that we would check the request if it contained/was the identifier that we set on the javascript
