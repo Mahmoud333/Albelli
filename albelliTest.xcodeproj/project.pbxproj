@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E04801D23D2977600E2279E /* ImageViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04801C23D2977600E2279E /* ImageViewRouter.swift */; };
+		1E04801F23D2978E00E2279E /* ImageViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04801E23D2978E00E2279E /* ImageViewPresenter.swift */; };
+		1E04802123D2979800E2279E /* ImageViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04802023D2979800E2279E /* ImageViewProtocol.swift */; };
+		1E04802423D2A4BB00E2279E /* ImageViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04802323D2A4BB00E2279E /* ImageViewInteractor.swift */; };
+		1E124F4123D391790087475F /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E124F4023D391790087475F /* MainViewPresenter.swift */; };
+		1E124F4323D391860087475F /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E124F4223D391860087475F /* MainViewProtocol.swift */; };
+		1E124F4523D391920087475F /* MainViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E124F4423D391920087475F /* MainViewRouter.swift */; };
+		1E124F4723D3919F0087475F /* MainViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E124F4623D3919F0087475F /* MainViewInteractor.swift */; };
 		4365213D23C5D9D600E97E12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4365213C23C5D9D600E97E12 /* AppDelegate.swift */; };
 		4365214123C5D9D600E97E12 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4365214023C5D9D600E97E12 /* MainViewController.swift */; };
 		4365214623C5D9DF00E97E12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4365214523C5D9DF00E97E12 /* Assets.xcassets */; };
@@ -18,6 +26,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E04801C23D2977600E2279E /* ImageViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewRouter.swift; sourceTree = "<group>"; };
+		1E04801E23D2978E00E2279E /* ImageViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewPresenter.swift; sourceTree = "<group>"; };
+		1E04802023D2979800E2279E /* ImageViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewProtocol.swift; sourceTree = "<group>"; };
+		1E04802323D2A4BB00E2279E /* ImageViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewInteractor.swift; sourceTree = "<group>"; };
+		1E124F4023D391790087475F /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
+		1E124F4223D391860087475F /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
+		1E124F4423D391920087475F /* MainViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRouter.swift; sourceTree = "<group>"; };
+		1E124F4623D3919F0087475F /* MainViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInteractor.swift; sourceTree = "<group>"; };
 		4365213923C5D9D600E97E12 /* albelliTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = albelliTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4365213C23C5D9D600E97E12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4365214023C5D9D600E97E12 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +57,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E04801523D2963A00E2279E /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				4365214023C5D9D600E97E12 /* MainViewController.swift */,
+				1E124F4623D3919F0087475F /* MainViewInteractor.swift */,
+				1E124F4023D391790087475F /* MainViewPresenter.swift */,
+				1E124F4223D391860087475F /* MainViewProtocol.swift */,
+				1E124F4423D391920087475F /* MainViewRouter.swift */,
+				1E04801B23D2973F00E2279E /* Views */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		1E04801623D2964300E2279E /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				4365215423C605E200E97E12 /* ImageViewController.swift */,
+				1E04802323D2A4BB00E2279E /* ImageViewInteractor.swift */,
+				1E04801E23D2978E00E2279E /* ImageViewPresenter.swift */,
+				1E04802023D2979800E2279E /* ImageViewProtocol.swift */,
+				1E04801C23D2977600E2279E /* ImageViewRouter.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		1E04801723D2964B00E2279E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1E04801623D2964300E2279E /* ImageView */,
+				1E04801523D2963A00E2279E /* MainView */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		1E04801823D296A700E2279E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4365213C23C5D9D600E97E12 /* AppDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1E04801923D296B200E2279E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				4365214A23C5D9DF00E97E12 /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		1E04801A23D2971200E2279E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4365215623C606A100E97E12 /* testPage.html */,
+				4365214523C5D9DF00E97E12 /* Assets.xcassets */,
+				4365214723C5D9DF00E97E12 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1E04801B23D2973F00E2279E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4365215823C6227900E97E12 /* CollectionViewImageCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4365213023C5D9D500E97E12 = {
 			isa = PBXGroup;
 			children = (
@@ -61,14 +145,10 @@
 		4365213B23C5D9D600E97E12 /* albelliTest */ = {
 			isa = PBXGroup;
 			children = (
-				4365213C23C5D9D600E97E12 /* AppDelegate.swift */,
-				4365214023C5D9D600E97E12 /* MainViewController.swift */,
-				4365215823C6227900E97E12 /* CollectionViewImageCell.swift */,
-				4365215423C605E200E97E12 /* ImageViewController.swift */,
-				4365215623C606A100E97E12 /* testPage.html */,
-				4365214523C5D9DF00E97E12 /* Assets.xcassets */,
-				4365214723C5D9DF00E97E12 /* LaunchScreen.storyboard */,
-				4365214A23C5D9DF00E97E12 /* Info.plist */,
+				1E04801923D296B200E2279E /* Configuration */,
+				1E04801823D296A700E2279E /* Core */,
+				1E04801A23D2971200E2279E /* Resources */,
+				1E04801723D2964B00E2279E /* Scenes */,
 			);
 			path = albelliTest;
 			sourceTree = "<group>";
@@ -146,9 +226,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4365214123C5D9D600E97E12 /* MainViewController.swift in Sources */,
+				1E04801F23D2978E00E2279E /* ImageViewPresenter.swift in Sources */,
 				4365215923C6227900E97E12 /* CollectionViewImageCell.swift in Sources */,
 				4365215523C605E200E97E12 /* ImageViewController.swift in Sources */,
 				4365213D23C5D9D600E97E12 /* AppDelegate.swift in Sources */,
+				1E124F4523D391920087475F /* MainViewRouter.swift in Sources */,
+				1E04802423D2A4BB00E2279E /* ImageViewInteractor.swift in Sources */,
+				1E04801D23D2977600E2279E /* ImageViewRouter.swift in Sources */,
+				1E04802123D2979800E2279E /* ImageViewProtocol.swift in Sources */,
+				1E124F4123D391790087475F /* MainViewPresenter.swift in Sources */,
+				1E124F4723D3919F0087475F /* MainViewInteractor.swift in Sources */,
+				1E124F4323D391860087475F /* MainViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +373,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = albelliTest/Info.plist;
+				DEVELOPMENT_TEAM = LYKU2NPL99;
+				INFOPLIST_FILE = albelliTest/Configuration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +392,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = albelliTest/Info.plist;
+				DEVELOPMENT_TEAM = LYKU2NPL99;
+				INFOPLIST_FILE = albelliTest/Configuration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

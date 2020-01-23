@@ -9,14 +9,26 @@
 import UIKit
 import Photos
 
-class MainViewController: UIViewController {
-    private let cellReuseIdentifier = "cell"
+class MainViewController: UIViewController, MainViewProtocol {
+    var presenter: MainViewPresenterProtocol!
+    
     private var collectionView: UICollectionView!
-
-    private var photosFetchResult = PHFetchResult<PHAsset>()
-
+    private let cellReuseIdentifier = "cell"
+    private lazy var cellSize = CGSize(width: view.bounds.size.width / 2, height: view.bounds.size.width / 2)
+    
+    //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
+    //MARK:- Setup
+    func setupCollectionView() {
         collectionView = UICollectionView(
             frame: view.bounds,
             collectionViewLayout: {
@@ -24,7 +36,7 @@ class MainViewController: UIViewController {
                 layout.minimumInteritemSpacing = 0
                 layout.minimumLineSpacing = 0
                 return layout
-            }()
+        }()
         )
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
@@ -32,41 +44,35 @@ class MainViewController: UIViewController {
         collectionView.register(CollectionViewImageCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
         view.addSubview(collectionView)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        getAllPhotos()
-    }
-
-    private func getAllPhotos() {
-        PHPhotoLibrary.requestAuthorization { [weak self] status in
-            guard case .authorized = status else { return assertionFailure("not handled for the sake of simplicity") }
-            self?.photosFetchResult = PHAsset.fetchAssets(with: .image, options: PHFetchOptions())
-            DispatchQueue.main.async { self?.collectionView.reloadData() }
-        }
+    
+    //MARK:- Helpers
+    func reloadCollectionView() {
+        DispatchQueue.main.async { self.collectionView.reloadData() }
     }
 }
 
+//MARK:- CollectionView
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosFetchResult.count
+        return presenter.numberOfItems()
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: cellReuseIdentifier,
             for: indexPath
-        ) as! CollectionViewImageCell
-        cell.image = nil // TODO: pass in the image
+            ) as! CollectionViewImageCell
+        
+        presenter.configuerCollectionCell(cell, indexPath: indexPath, size: cellSize)
+                
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.size.width / 2, height: view.bounds.size.width / 2)
+        return cellSize
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageViewController = ImageViewController(imageId: "") // TODO: init with asset image id
-        navigationController?.pushViewController(imageViewController, animated: true)
+        presenter.didSelectCollectionCell(indexPath)
     }
 }

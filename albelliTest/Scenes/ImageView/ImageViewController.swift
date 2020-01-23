@@ -10,18 +10,11 @@ import UIKit
 import WebKit
 import Photos
 
-class ImageViewController: UIViewController {
-    private let imageId: String
+class ImageViewController: UIViewController, ImageViewProtocol {
+
+    var presenter: ImageViewPresenterProtocol!
+    
     private var webView: WKWebView!
-
-    init(imageId: String) {
-        self.imageId = imageId
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +23,7 @@ class ImageViewController: UIViewController {
             configuration: {
                 let config = WKWebViewConfiguration()
                 config.setURLSchemeHandler(ImageSchemeHandler(), forURLScheme: "photo-request")
+                config.userContentController.add(self, name: presenter.doneButtonJSHandler)
                 return config
             }()
         )
@@ -38,20 +32,17 @@ class ImageViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadPage()
+        presenter.viewDidAppear()
     }
 
-    // note: implicit unwrapping is done for the sake of convenience
-    // if it crashes, please let us know, it's not part of the test
-    private func loadPage() {
-        guard let percentEncodedId = imageId.addingPercentEncoding(withAllowedCharacters: .urlUserAllowed),
-            let url = URL(string: "http://localhost?imageId=\(percentEncodedId)"),
-            let testPageUrl = Bundle.main.url(forResource: "testPage", withExtension: "html"),
-            let html = try? String(contentsOf: testPageUrl)
-        else {
-            return assertionFailure("oops. not part of the test, please let us know if execution ends up here")
-        }
+    func loadPage(_ html: String, url: URL) {
         webView.loadHTMLString(html, baseURL: url)
+    }
+}
+
+extension ImageViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        presenter.webViewDidReceive(message.name, body: message.body)
     }
 }
 

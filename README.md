@@ -1,9 +1,7 @@
 
-Welcome to albelli's iOS test assignment!
+The ways web view can communicate with native code:
+1- through using library WKWebViewJavascriptBridge 
 
-In this repo you'll find the starter project needed to complete the test. The assignment is as follows:
+2- if we were using UIWebView then we would be changing the window.location to a certain identifier and in the swift part inside method shouldStartLoadWithRequest we would return by default true but before that we would check the request if it contained/was the identifier that we set on the javascript
 
-* MainViewController: use provided collection view boilerplate and photo library accessor to display the photo roll. Consider performance implications of different ways to access image data as well as scalability – business may require to add more logic to photos fetch request. Reorganize the code to your taste if necessary
-* ImageViewController: handle the "Done" button click. For extra points list the ways web view can communicate with native code
-* testPage.html: write a click handler for "Done" button that'll communicate the event to native code (incomplete part is marked with TODO)
-* Refactor the code to use the most suitable architecture pattern given that the project will grow and will require multiple developers working on the same code. Also consider that it might be using web views for some screens
+3- the way we used by creating a handler identifier and passing it to the WKWebView configuration with userContentController and conform to protocol WKScriptMessageHandler by adding method “userContentController(_ userContentController:, didReceive message:) “ and in the Javascript part we would call postMessage to the webkit message handlers our custom handler identifier and in the native part method “userContentController(_ userContentController:, didReceive message:) “ will get called and we will check the message name with our handlers and by so we will act accordingly 
